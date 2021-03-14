@@ -6,11 +6,13 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.*
 import com.g3.spot_guide.R
 import com.g3.spot_guide.screens.crew.CrewScreenUI
+import com.g3.spot_guide.screens.main.theme.BurgundyPrimary
 import com.g3.spot_guide.screens.map.MapScreenUI
 import com.g3.spot_guide.screens.profile.ProfileScreenUI
 import com.g3.spot_guide.screens.settings.SettingsScreenUI
@@ -48,7 +50,10 @@ fun MainActivityUI() {
 
 @Composable
 fun BottomBar(navController: NavHostController, homeBottomNavigationScreens: List<HomeBottomNavigationScreens>) {
-    BottomNavigation {
+    BottomNavigation(
+        backgroundColor = Color.White,
+        contentColor = BurgundyPrimary
+    ) {
         val navBackStackEntry by navController.currentBackStackEntryAsState()
         val currentRoute = navBackStackEntry?.arguments?.getString(KEY_ROUTE)
         homeBottomNavigationScreens.forEach { screen ->
