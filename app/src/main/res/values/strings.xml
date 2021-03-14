@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Spot Guide</string>
+
+    <string name="screen_label__map">Map</string>
+    <string name="screen_label__profile">Profile</string>
+    <string name="screen_label__crew">Crew</string>
+    <string name="screen_label__settings">Settings</string>
+
+</resources>
