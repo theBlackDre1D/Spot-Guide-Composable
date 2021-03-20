@@ -2,7 +2,7 @@ package com.g3.spot_guide.screens.login.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
-val Purple200 = Color(0xFFBB86FC)
-val Purple500 = Color(0xFF6200EE)
 val Purple700 = Color(0xFF3700B3)
 val Teal200 = Color(0xFF03DAC5)
+val BurgundyPrimary = Color(0xFF5A082D)
+val Black333333 = Color(0xFF333333)

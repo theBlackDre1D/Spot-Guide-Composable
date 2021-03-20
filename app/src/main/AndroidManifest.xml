@@ -11,23 +11,27 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SpotGuide">
         <activity
+            android:name=".screens.editProfile.EditProfileActivity"
+            android:exported="true"
+            android:label="@string/title_activity_edit_profile"
+            android:theme="@style/Theme.SpotGuide.NoActionBar" />
+        <activity
             android:name=".screens.splash.SplashActivity"
             android:exported="true"
             android:label="@string/title_activity_splash"
-            android:theme="@style/Theme.SpotGuide.NoActionBar">
+            android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".screens.login.LoginActivity"
             android:exported="true"
             android:label="@string/title_activity_login"
-            android:theme="@style/Theme.SpotGuide.NoActionBar" />
-
+            android:theme="@style/Theme.SpotGuide.NoActionBar"
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".screens.main.MainActivity"
             android:exported="true"

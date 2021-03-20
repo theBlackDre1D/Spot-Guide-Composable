@@ -109,5 +109,6 @@
     <string name="settings__log_out">Log out</string>
     <string name="title_activity_login">LoginActivity</string>
     <string name="title_activity_splash">SplashActivity</string>
+    <string name="title_activity_edit_profile">EditProfileActivity</string>
 
 </resources>

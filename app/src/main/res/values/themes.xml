@@ -22,4 +22,10 @@
     <style name="Theme.SpotGuide.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.SpotGuide.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="SplashTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="android:windowBackground">@drawable/splash_screen</item>
+        <item name="android:windowTranslucentStatus">true</item>
+    </style>
+
 </resources>

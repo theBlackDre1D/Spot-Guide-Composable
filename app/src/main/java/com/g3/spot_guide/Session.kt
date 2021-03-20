@@ -5,6 +5,8 @@ import android.content.ContextWrapper
 import com.g3.spot_guide.models.User
 import com.google.gson.Gson
 import com.pixplicity.easyprefs.library.Prefs
+import org.koin.android.ext.koin.androidContext
+import org.koin.core.context.startKoin
 
 const val LOGGED_IN_USER__PREFS_KEY = "LOGGED_IN_USER__PREFS_KEY"
 
@@ -23,11 +25,14 @@ class Session : Application() {
         }
     }
 
+    val coordinator: SpotGuideCoordinator by lazy { SpotGuideCoordinator() }
+
     override fun onCreate() {
         super.onCreate()
 
         application = this
 
+        initKoin()
         initPrefs()
         loadLoggedInUser()
     }
@@ -47,5 +52,12 @@ class Session : Application() {
             val user = Gson().fromJson(userJson, User::class.java)
             loggedInUser = user
         } catch (e: Exception) { }
+    }
+
+    private fun initKoin() {
+        startKoin {
+            androidContext(this@Session)
+            modules(appModules)
+        }
     }
 }
