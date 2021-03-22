@@ -1,6 +1,9 @@
 package com.g3.spot_guide.base.either
 
 sealed class Either<out T> {
+
+    var isLoading = false
+
     data class Error(val message: String?) : Either<Nothing>() {
         constructor(exception: Exception) : this(exception.localizedMessage)
     }

@@ -3,7 +3,7 @@ package com.g3.spot_guide
 import android.app.Activity
 import android.content.Intent
 import com.g3.spot_guide.base.coordinator.BaseCoordinator
-import com.g3.spot_guide.screens.login.LoginActivity
+import com.g3.spot_guide.screens.login.login.ui.LoginActivity
 import com.g3.spot_guide.screens.main.MainActivity
 import com.g3.spot_guide.screens.splash.SplashActivity
 

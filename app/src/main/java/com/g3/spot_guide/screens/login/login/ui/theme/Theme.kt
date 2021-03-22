@@ -1,4 +1,4 @@
-package com.g3.spot_guide.screens.login.ui.theme
+package com.g3.spot_guide.screens.login.login.ui.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.MaterialTheme
@@ -8,13 +8,13 @@ import androidx.compose.runtime.Composable
 
 private val DarkColorPalette = darkColors(
     primary = BurgundyPrimary,
-    primaryVariant = Purple700,
+    primaryVariant = TransparentWhite,
     secondary = Teal200
 )
 
 private val LightColorPalette = lightColors(
     primary = BurgundyPrimary,
-    primaryVariant = Purple700,
+    primaryVariant = TransparentWhite,
     secondary = Teal200
 
     /* Other default colors to override

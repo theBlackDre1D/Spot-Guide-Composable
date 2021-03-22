@@ -1,4 +1,4 @@
-package com.g3.spot_guide.screens.login.ui.theme
+package com.g3.spot_guide.screens.login.login.ui.theme
 
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Shapes

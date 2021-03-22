@@ -1,4 +1,4 @@
-package com.g3.spot_guide.screens.login.ui.theme
+package com.g3.spot_guide.screens.login.login.ui.theme
 
 import androidx.compose.material.Typography
 import androidx.compose.ui.text.TextStyle
