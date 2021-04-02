@@ -1,4 +1,4 @@
-package com.g3.spot_guide.screens.login
+package com.g3.spot_guide.screens.login.login.ui
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -12,19 +12,26 @@ class LoginScreenViewModel(
     private val repository: UserRepository
 ) : ViewModel() {
 
-    val state = MutableLiveData<State>()
+    val state = MutableLiveData(State())
 
     data class State(
         var email: String = "",
-        var password: String = ""
+        var password: String = "",
+        var loginLoading: Boolean = false
     ) : Serializable
 
     val loggedInUser = MutableLiveData<Either<FirebaseUser>>()
 
     fun logIn() {
+        state.postValue(state.value?.copy(loginLoading = true))
+
         doInCoroutine {
             val result = repository.loginUserWithFirebase(state.value?.email ?: "", state.value?.password ?: "")
             loggedInUser.postValue(result)
+
+            if (result is Either.Error) {
+                state.postValue(state.value?.copy(loginLoading = false))
+            }
         }
     }
 }

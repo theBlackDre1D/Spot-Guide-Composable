@@ -50,7 +50,7 @@ fun LoginActivityUI(loginScreenViewModel: LoginScreenViewModel, handler: LoginAc
                 ) {
                     Text(
                         text = stringResource(R.string.app_name),
-                        fontSize = 50.sp,
+                        fontSize = 45.sp,
                         fontFamily = greatVibesFontFamily,
                         color = BurgundyPrimary
                     )
