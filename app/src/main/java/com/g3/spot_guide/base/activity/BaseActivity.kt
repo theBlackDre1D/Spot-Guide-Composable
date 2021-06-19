@@ -1,13 +1,13 @@
 package com.g3.spot_guide.base.activity
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
+import androidx.activity.ComponentActivity
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.OnLifecycleEvent
 import com.g3.spot_guide.base.interfaces.BaseParameters
 
-abstract class BaseActivity<PARAMETERS : BaseParameters> : AppCompatActivity(), LifecycleObserver {
+abstract class BaseActivity<PARAMETERS : BaseParameters> : ComponentActivity(), LifecycleObserver {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,7 +48,7 @@ abstract class BaseActivity<PARAMETERS : BaseParameters> : AppCompatActivity(), 
         this.onActivityDestroyed()
     }
 
-    protected abstract fun onActivityLoadingFinished()
+    protected open fun onActivityLoadingFinished() {}
 
     private fun initializeParameters() = this.intent.extras?.let { extras -> this.createParameters()?.loadParameters(extras) }
     protected open fun createParameters(): PARAMETERS? = null

@@ -11,6 +11,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SpotGuide">
         <activity
+            android:name=".screens.onBoarding.OnBoardingActivity"
+            android:exported="true"
+            android:label="@string/title_activity_on_boarding"
+            android:theme="@style/Theme.SpotGuide.NoActionBar"></activity>
+        <activity
             android:name=".screens.editProfile.EditProfileActivity"
             android:exported="true"
             android:label="@string/title_activity_edit_profile"

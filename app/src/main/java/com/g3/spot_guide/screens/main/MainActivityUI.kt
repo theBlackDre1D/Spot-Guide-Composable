@@ -9,7 +9,10 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavHostController
-import androidx.navigation.compose.*
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.currentBackStackEntryAsState
+import androidx.navigation.compose.rememberNavController
 import com.g3.spot_guide.R
 import com.g3.spot_guide.screens.crew.CrewScreenUI
 import com.g3.spot_guide.screens.main.theme.BurgundyPrimary
@@ -55,7 +58,7 @@ fun BottomBar(navController: NavHostController, homeBottomNavigationScreens: Lis
         contentColor = BurgundyPrimary
     ) {
         val navBackStackEntry by navController.currentBackStackEntryAsState()
-        val currentRoute = navBackStackEntry?.arguments?.getString(KEY_ROUTE)
+        val currentRoute = navBackStackEntry?.destination?.route
         homeBottomNavigationScreens.forEach { screen ->
             BottomNavigationItem(
                 icon = { Icon(Icons.Filled.Favorite, contentDescription = null) },
@@ -64,7 +67,7 @@ fun BottomBar(navController: NavHostController, homeBottomNavigationScreens: Lis
                 onClick = {
                     if (currentRoute != screen.route) {
                         navController.navigate(screen.route) {
-                            popUpTo = navController.graph.startDestination
+                            popUpTo = navController.graph.startDestinationId
                             launchSingleTop = true
                         }
                     }

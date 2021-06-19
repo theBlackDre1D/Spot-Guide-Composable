@@ -7,6 +7,7 @@ import com.g3.spot_guide.repositories.ImagesRepository
 import com.g3.spot_guide.repositories.ReviewRepository
 import com.g3.spot_guide.repositories.SpotRepository
 import com.g3.spot_guide.repositories.UserRepository
+import com.g3.spot_guide.screens.editProfile.EditProfileActivityViewModel
 import com.g3.spot_guide.screens.login.login.ui.LoginScreenViewModel
 import com.g3.spot_guide.screens.login.register.RegisterScreenViewModel
 import com.g3.spot_guide.screens.splash.SplashActivityViewModel
@@ -27,7 +28,7 @@ val appModules = module {
     viewModel { RegisterScreenViewModel( get() ) }
 //    viewModel { RegisterFragmentViewModel( get() ) }
 //    viewModel { MyProfileFragmentViewModel( get(), get() ) }
-//    viewModel { EditProfileActivityViewModel() }
+    viewModel { EditProfileActivityViewModel() }
 //    viewModel { EditProfileFragmentViewModel( get() ) }
 //    viewModel { CrewFragmentViewModel( get() ) }
 //    viewModel { OtherUserProfileActivityViewModel() }

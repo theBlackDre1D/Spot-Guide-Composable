@@ -2,10 +2,8 @@ package com.g3.spot_guide.screens.splash
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.tooling.preview.Preview
 import com.g3.spot_guide.Session
-import com.g3.spot_guide.screens.splash.ui.theme.SpotGuideTheme
+import com.g3.spot_guide.screens.editProfile.EditProfileActivity
 import com.google.firebase.auth.FirebaseAuth
 import org.koin.android.viewmodel.ext.android.viewModel
 
@@ -31,21 +29,16 @@ class SplashActivity : ComponentActivity() {
                     val user = userEither.getValueOrNull()
                     if (user != null) {
                         Session.saveAndSetLoggedInUser(user)
-
-//                        if (!user.isUserValid) {
-//                            val parameters = EditProfileActivity.Parameters(user)
-//                            Session.application.coordinator.startEditProfileActivity(
-//                                this,
-//                                parameters,
-//                                true
-//                            )
-//                        } else {
+                        if (!user.isUserValid) {
+                            val parameters = EditProfileActivity.Parameters(user)
+                            Session.application.coordinator.startEditProfileActivity(this, parameters, true)
+                        } else {
 //                            if (Prefs.getBoolean(SHOW_ON_BOARDING__PREFS_KEY, true)) {
 //                                Session.application.coordinator.startOnBoardingActivity(this)
 //                            } else {
-//                                Session.application.coordinator.startMapActivity(this)
+                                Session.application.coordinator.startMainActivity(this)
 //                            }
-//                        }
+                        }
                     } else {
                         Session.application.coordinator.startLoginActivity(this)
                     }
@@ -56,13 +49,5 @@ class SplashActivity : ComponentActivity() {
         } else {
             Session.application.coordinator.startLoginActivity(this)
         }
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview4() {
-    SpotGuideTheme {
-//        Greeting("Android")
     }
 }
