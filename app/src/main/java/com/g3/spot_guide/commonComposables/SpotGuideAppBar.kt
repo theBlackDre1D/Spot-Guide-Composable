@@ -19,7 +19,7 @@ import com.g3.spot_guide.screens.main.theme.BurgundyPrimary
 import com.g3.spot_guide.screens.main.theme.SpotGuideTheme
 
 fun Modifier.appBarSize(): Modifier {
-    return Modifier
+    return this
         .fillMaxWidth()
         .height(50.dp)
 }
