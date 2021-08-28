@@ -14,7 +14,7 @@
             android:name=".screens.onBoarding.OnBoardingActivity"
             android:exported="true"
             android:label="@string/title_activity_on_boarding"
-            android:theme="@style/Theme.SpotGuide.NoActionBar"></activity>
+            android:theme="@style/Theme.SpotGuide.NoActionBar" />
         <activity
             android:name=".screens.editProfile.EditProfileActivity"
             android:exported="true"

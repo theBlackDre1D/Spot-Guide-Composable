@@ -2,13 +2,13 @@ package com.g3.spot_guide.screens.login.login.ui
 
 import android.os.Bundle
 import androidx.activity.compose.setContent
-import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.g3.spot_guide.Session
+import com.g3.spot_guide.base.activity.BaseActivity
 import com.g3.spot_guide.providers.UserFirestoreProvider
 import com.g3.spot_guide.repositories.UserRepository
 import com.g3.spot_guide.screens.login.login.ui.theme.SpotGuideTheme
@@ -16,7 +16,7 @@ import com.g3.spot_guide.screens.login.register.RegisterScreenUI
 import com.g3.spot_guide.screens.login.register.RegisterScreenViewModel
 import org.koin.android.viewmodel.ext.android.viewModel
 
-class LoginActivity : AppCompatActivity() {
+class LoginActivity : BaseActivity<Nothing>() {
 
     sealed class LoginActivityScreens(val route: String) {
         object LoginScreen : LoginActivityScreens("login")
