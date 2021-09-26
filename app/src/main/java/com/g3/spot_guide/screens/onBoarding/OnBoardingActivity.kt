@@ -2,8 +2,6 @@ package com.g3.spot_guide.screens.onBoarding
 
 import android.os.Bundle
 import androidx.activity.compose.setContent
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
@@ -18,10 +16,7 @@ class OnBoardingActivity : BaseActivity<Nothing>() {
         super.onCreate(savedInstanceState)
         setContent {
             SpotGuideTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(color = MaterialTheme.colors.background) {
-                    Greeting2("On boarding activity")
-                }
+               OnBoardingActivityUI()
             }
         }
     }
