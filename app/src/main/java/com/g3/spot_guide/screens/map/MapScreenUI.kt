@@ -1,17 +1,18 @@
 package com.g3.spot_guide.screens.map
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material.Button
 import androidx.compose.material.Scaffold
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.g3.spot_guide.R
@@ -37,7 +38,7 @@ fun MapScreenUI() {
         topBar = { SpotGuideAppBar(middleText = stringResource(id = R.string.app_name)) },
         modifier = Modifier.fillMaxSize()
     ) {
-        Column(
+        Box(
             modifier = Modifier
                 .fillMaxHeight()
                 .fillMaxWidth()
@@ -48,7 +49,7 @@ fun MapScreenUI() {
             AndroidView({ mapView }) { mapView ->
                 CoroutineScope(Dispatchers.Main).launch {
                     val map = mapView.awaitMap()
-                    map.uiSettings.isZoomControlsEnabled = true
+                    map.uiSettings.isZoomControlsEnabled = false
 
                     val pickUp =  LatLng(-35.016, 143.321)
                     val destination = LatLng(-32.491, 147.309)
@@ -71,6 +72,19 @@ fun MapScreenUI() {
                             LatLng(-32.306, 149.248),
                             destination)
                     )
+                }
+            }
+
+            Column(
+                verticalArrangement = Arrangement.Bottom,
+//                horizontalAlignment = Alignment.Horizontal.CenterHorizontally
+            ) {
+                Button(
+                    onClick = {  },
+                    modifier = Modifier.padding(10.dp),
+                    shape = CircleShape
+                ) {
+                    Text(text = "Add point")
                 }
             }
         }
