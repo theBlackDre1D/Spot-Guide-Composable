@@ -10,7 +10,7 @@ class UserRepository (
     private val provider: UserFirestoreProvider
 ) {
 
-    suspend fun loginUserWithFirebase(email: String, password: String) = provider.loginUserWithFirebase(email, password)
+    suspend fun loginUserWithFirebase(email: String, password: String) = provider.loginUserWithFirebaseAsFlow(email, password)
     suspend fun registerUserWithFirebase(email: String, password: String, userName: String) = provider.registerUserWithFirebase(email, password, userName)
     suspend fun getUserByEmail(email: String) = provider.getUserByEmail(email)
     suspend fun getUserById(userId: String) = provider.getUserById(userId)

@@ -12,7 +12,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.g3.spot_guide.R
-import com.g3.spot_guide.base.either.Either
+import com.g3.spot_guide.base.uiState.UIState
 import com.g3.spot_guide.commonComposables.StyledInputField
 import com.g3.spot_guide.commonComposables.greatVibesFontFamily
 import com.g3.spot_guide.providers.UserFirestoreProvider
@@ -28,13 +28,13 @@ fun RegisterScreenUI(registerScreenViewModel: RegisterScreenViewModel, handler: 
     val screenState = registerScreenViewModel.state
     val registerState = registerScreenViewModel.registerResult
 
-    if (registerState.value is Either.Success) {
+    if (registerState.value is UIState.Success) {
         handler.fromRegisterScreenToHomeScreen()
     }
 
     Scaffold(
         snackbarHost = {
-            if (registerState.value is Either.Error) {
+            if (registerState.value is UIState.Error) {
                 Text(text = stringResource(id = R.string.error__register))
             }
         }

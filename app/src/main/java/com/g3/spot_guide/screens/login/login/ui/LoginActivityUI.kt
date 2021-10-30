@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -12,7 +13,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.g3.spot_guide.R
-import com.g3.spot_guide.base.either.Either
+import com.g3.spot_guide.base.uiState.UIState
 import com.g3.spot_guide.commonComposables.StyledInputField
 import com.g3.spot_guide.commonComposables.greatVibesFontFamily
 import com.g3.spot_guide.providers.UserFirestoreProvider
@@ -24,16 +25,16 @@ import com.g3.spot_guide.screens.splash.ui.theme.SpotGuideTheme
 @Composable
 fun LoginActivityUI(loginScreenViewModel: LoginScreenViewModel, handler: LoginActivity.LoginScreenHandler) {
 
-    val screenState = loginScreenViewModel.state
-    val loginState = loginScreenViewModel.loggedInUser
+    val screenState = loginScreenViewModel.state.collectAsState(initial = UIState.InitialValue)
+    val loginState = loginScreenViewModel.loggedInUser.collectAsState(initial = UIState.InitialValue)
 
-    if (loginState.value is Either.Success) {
+    if (loginState.value is UIState.Success) {
         handler.fromLoginScreenToHomeScreen()
     }
 
     Scaffold(
         snackbarHost = {
-            if (loginState.value is Either.Error) {
+            if (loginState.value is UIState.Error) {
                 Text(text = stringResource(id = R.string.error__log_in))
             }
         }
@@ -43,7 +44,8 @@ fun LoginActivityUI(loginScreenViewModel: LoginScreenViewModel, handler: LoginAc
                 .fillMaxWidth()
                 .fillMaxHeight(), contentAlignment = Alignment.Center
         ) {
-            if (!screenState.value.loginLoading) {
+            if (screenState.value is UIState.Success<*> || screenState.value is UIState.InitialValue) {
+                val screenStateValue = screenState.value as? UIState.Success<LoginScreenViewModel.State>
                 Column(
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
@@ -57,23 +59,23 @@ fun LoginActivityUI(loginScreenViewModel: LoginScreenViewModel, handler: LoginAc
                     Spacer(modifier = Modifier.height(50.dp))
 
                     StyledInputField(
-                        value = screenState.value.email,
+                        value = screenStateValue?.value?.email ?: "",
                         iconResId = R.drawable.ic_email,
                         hint = R.string.login__email,
                         onValueChange = {
-                            loginScreenViewModel.state.value = (screenState.value.copy(email = it))
+                            loginScreenViewModel.state.value = screenStateValue?.value?.copy(email = it) ?: LoginScreenViewModel.State(email = it)
                         }
                     )
 
                     Spacer(modifier = Modifier.height(15.dp))
 
                     StyledInputField(
-                        value = screenState.value.password,
+                        value = screenStateValue?.value?.password ?: "",
                         iconResId = R.drawable.ic_password,
                         hint = R.string.login__password,
                         securedInput = true,
                         onValueChange = {
-                            loginScreenViewModel.state.value = (screenState.value.copy(password = it))
+                            loginScreenViewModel.state.value = screenStateValue?.value?.copy(password = it) ?: LoginScreenViewModel.State(password = it)
                         }
                     )
 
@@ -81,7 +83,7 @@ fun LoginActivityUI(loginScreenViewModel: LoginScreenViewModel, handler: LoginAc
 
                     Button(onClick = {
                         loginScreenViewModel.logIn()
-                    }, enabled = screenState.value.password.length >= 6,
+                    }, enabled = setEnabledLoginButton(screenStateValue),
                         shape = CircleShape) {
                         Text(text = stringResource(id = R.string.login__login), fontSize = 16.sp)
                     }
@@ -102,6 +104,14 @@ fun LoginActivityUI(loginScreenViewModel: LoginScreenViewModel, handler: LoginAc
                 )
             }
         }
+    }
+}
+
+private fun setEnabledLoginButton(screenStateValue: UIState.Success<LoginScreenViewModel.State>?): Boolean {
+    return if (screenStateValue != null) {
+        screenStateValue.value.password.length >= 6
+    } else {
+        false
     }
 }
 

@@ -1,12 +1,12 @@
 package com.g3.spot_guide.screens.login.login.ui
 
-import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
-import com.g3.spot_guide.base.either.Either
+import com.g3.spot_guide.base.uiState.UIState
 import com.g3.spot_guide.extensions.doInCoroutine
 import com.g3.spot_guide.repositories.UserRepository
 import com.google.firebase.auth.FirebaseUser
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.map
 import java.io.Serializable
 
 class LoginScreenViewModel(
@@ -21,17 +21,19 @@ class LoginScreenViewModel(
         var loginLoading: Boolean = false
     ) : Serializable
 
-    val loggedInUser = mutableStateOf<Either<FirebaseUser>>(Either.Initial)
+    val loggedInUser = MutableStateFlow<UIState<FirebaseUser>>(UIState.InitialValue)
 
     fun logIn() {
         state.value = state.value.copy(loginLoading = true)
 
         doInCoroutine {
             val result = repository.loginUserWithFirebase(state.value.email, state.value.password)
-            loggedInUser.value = result
+            result.map {
+                loggedInUser.value = it
 
-            if (result is Either.Error) {
-                state.value = state.value.copy(loginLoading = false)
+                if (it is UIState.Error) {
+                    state.value = state.value.copy(loginLoading = false)
+                }
             }
         }
     }
