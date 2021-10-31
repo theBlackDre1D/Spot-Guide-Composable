@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -24,8 +25,8 @@ import com.g3.spot_guide.screens.splash.ui.theme.SpotGuideTheme
 @Composable
 fun LoginActivityUI(loginScreenViewModel: LoginScreenViewModel, handler: LoginActivity.LoginScreenHandler) {
 
-    val screenState = loginScreenViewModel.state
-    val loginState = loginScreenViewModel.loggedInUser
+    val screenState = loginScreenViewModel.state.observeAsState(LoginScreenViewModel.State())
+    val loginState = loginScreenViewModel.loggedInUser.observeAsState()
 
     if (loginState.value is Either.Success) {
         handler.fromLoginScreenToHomeScreen()
@@ -43,7 +44,7 @@ fun LoginActivityUI(loginScreenViewModel: LoginScreenViewModel, handler: LoginAc
                 .fillMaxWidth()
                 .fillMaxHeight(), contentAlignment = Alignment.Center
         ) {
-            if (!screenState.value.loginLoading) {
+            if (screenState.value?.loginLoading != true) {
                 Column(
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
@@ -61,7 +62,7 @@ fun LoginActivityUI(loginScreenViewModel: LoginScreenViewModel, handler: LoginAc
                         iconResId = R.drawable.ic_email,
                         hint = R.string.login__email,
                         onValueChange = {
-                            loginScreenViewModel.state.value = (screenState.value.copy(email = it))
+                            loginScreenViewModel.state.postValue(screenState.value?.copy(email = it))
                         }
                     )
 
@@ -73,7 +74,7 @@ fun LoginActivityUI(loginScreenViewModel: LoginScreenViewModel, handler: LoginAc
                         hint = R.string.login__password,
                         securedInput = true,
                         onValueChange = {
-                            loginScreenViewModel.state.value = (screenState.value.copy(password = it))
+                            loginScreenViewModel.state.postValue(screenState.value?.copy(password = it))
                         }
                     )
 

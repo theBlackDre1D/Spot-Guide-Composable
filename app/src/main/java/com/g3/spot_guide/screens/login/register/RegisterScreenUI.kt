@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -25,8 +26,8 @@ import com.g3.spot_guide.screens.splash.ui.theme.SpotGuideTheme
 @Composable
 fun RegisterScreenUI(registerScreenViewModel: RegisterScreenViewModel, handler: LoginActivity.RegisterScreenHandler) {
 
-    val screenState = registerScreenViewModel.state
-    val registerState = registerScreenViewModel.registerResult
+    val screenState = registerScreenViewModel.state.observeAsState(RegisterScreenViewModel.State())
+    val registerState = registerScreenViewModel.registerResult.observeAsState()
 
     if (registerState.value is Either.Success) {
         handler.fromRegisterScreenToHomeScreen()
@@ -44,7 +45,7 @@ fun RegisterScreenUI(registerScreenViewModel: RegisterScreenViewModel, handler: 
                 .fillMaxWidth()
                 .fillMaxHeight(), contentAlignment = Alignment.Center
         ) {
-            if (!screenState.value.registerLoading) {
+            if (screenState.value?.registerLoading != true) {
                 Column(
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
@@ -62,7 +63,7 @@ fun RegisterScreenUI(registerScreenViewModel: RegisterScreenViewModel, handler: 
                         iconResId = R.drawable.ic_account,
                         hint = R.string.login__username,
                         onValueChange = {
-                            registerScreenViewModel.state.value = screenState.value.copy(username = it)
+                            registerScreenViewModel.state.postValue(screenState.value?.copy(username = it))
                         }
                     )
 
@@ -73,7 +74,7 @@ fun RegisterScreenUI(registerScreenViewModel: RegisterScreenViewModel, handler: 
                         iconResId = R.drawable.ic_email,
                         hint = R.string.login__email,
                         onValueChange = {
-                            registerScreenViewModel.state.value = screenState.value.copy(email = it)
+                            registerScreenViewModel.state.postValue(screenState.value?.copy(email = it))
                         }
                     )
 
@@ -85,7 +86,7 @@ fun RegisterScreenUI(registerScreenViewModel: RegisterScreenViewModel, handler: 
                         hint = R.string.login__password,
                         securedInput = true,
                         onValueChange = {
-                            registerScreenViewModel.state.value = screenState.value.copy(password = it)
+                            registerScreenViewModel.state.postValue(screenState.value?.copy(password = it))
                         }
                     )
 

@@ -1,7 +1,7 @@
 package com.g3.spot_guide.screens.map
 
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import kotlinx.coroutines.flow.MutableStateFlow
 import java.io.Serializable
 
 class MapViewModel : ViewModel() {
@@ -10,5 +10,5 @@ class MapViewModel : ViewModel() {
         val spots: List<Any>
     ) : Serializable
 
-    val screenState = MutableStateFlow<ScreenState>(ScreenState(listOf()))
+    val screenState = MutableLiveData<ScreenState>()
 }

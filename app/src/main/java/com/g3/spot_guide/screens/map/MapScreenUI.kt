@@ -7,6 +7,7 @@ import androidx.compose.material.Button
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
@@ -31,7 +32,7 @@ import kotlinx.coroutines.launch
 fun MapScreenUI() {
 
     val viewModel: MapViewModel = viewModel()
-    val state = viewModel.screenState
+    val state = viewModel.screenState.observeAsState()
 
     Scaffold(
         topBar = { SpotGuideAppBar(middleText = stringResource(id = R.string.app_name)) },
