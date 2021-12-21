@@ -1,5 +1,6 @@
 package com.g3.spot_guide.screens.login.login.ui
 
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.g3.spot_guide.base.uiState.UIState
 import com.g3.spot_guide.extensions.doInCoroutine
@@ -13,7 +14,7 @@ class LoginScreenViewModel(
     private val repository: UserRepository
 ) : ViewModel() {
 
-    val state = MutableStateFlow(State())
+    val state = MutableLiveData(State())
 
     data class State(
         var email: String = "",
@@ -24,15 +25,19 @@ class LoginScreenViewModel(
     val loggedInUser = MutableStateFlow<UIState<FirebaseUser>>(UIState.InitialValue)
 
     fun logIn() {
-        state.value = state.value.copy(loginLoading = true)
+        state.value?.let {
+            state.postValue(it.copy(loginLoading = true))
+        }
 
         doInCoroutine {
-            val result = repository.loginUserWithFirebase(state.value.email, state.value.password)
-            result.map {
-                loggedInUser.value = it
+            state.value?.let { stateValue ->
+                val result = repository.loginUserWithFirebase(stateValue.email, stateValue.password)
+                result.map {
+                    loggedInUser.emit(it)
 
-                if (it is UIState.Error) {
-                    state.value = state.value.copy(loginLoading = false)
+                    if (it is UIState.Error) {
+                        state.value = stateValue.copy(loginLoading = false)
+                    }
                 }
             }
         }

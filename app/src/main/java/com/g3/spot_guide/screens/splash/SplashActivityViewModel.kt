@@ -6,7 +6,7 @@ import com.g3.spot_guide.base.uiState.UIState
 import com.g3.spot_guide.extensions.doInCoroutine
 import com.g3.spot_guide.models.User
 import com.g3.spot_guide.repositories.UserRepository
-import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.collect
 
 class SplashActivityViewModel(
     private val userRepository: UserRepository
@@ -16,7 +16,7 @@ class SplashActivityViewModel(
 
     fun getUser(email: String) {
         doInCoroutine {
-            userRepository.getUserByEmail(email).map {
+            userRepository.getUserByEmail(email).collect {
                 user.postValue(it)
             }
         }
