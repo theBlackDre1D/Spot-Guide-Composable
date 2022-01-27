@@ -6,12 +6,14 @@ import androidx.annotation.StringRes
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
@@ -25,7 +27,7 @@ import com.g3.spot_guide.screens.splash.ui.theme.SpotGuideTheme
 fun StyledInputField(value: String, @DrawableRes iconResId: Int, @StringRes hint: Int? = null, securedInput: Boolean = false, onValueChange: (String) -> Unit) {
     Surface(
         modifier = Modifier
-            .padding(start = 20.dp, end = 20.dp)
+            .padding(start = 10.dp, end = 10.dp)
             .background(Color.White)
     ) {
         TextField(
@@ -37,6 +39,14 @@ fun StyledInputField(value: String, @DrawableRes iconResId: Int, @StringRes hint
                     Text(text = stringResource(id = hintResId))
                 }
             },
+            keyboardOptions = KeyboardOptions(
+                keyboardType = if (securedInput) KeyboardType.Password else KeyboardType.Text
+            ),
+//            trailingIcon = {
+//                if (securedInput) {
+//
+//                }
+//            },
             visualTransformation = if (securedInput) PasswordVisualTransformation() else VisualTransformation.None,
             leadingIcon = {
                 Icon(painterResource(id = iconResId), contentDescription = null)

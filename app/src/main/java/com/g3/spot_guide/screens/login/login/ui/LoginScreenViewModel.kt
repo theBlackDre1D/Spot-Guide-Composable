@@ -17,8 +17,8 @@ class LoginScreenViewModel(
     val state = MutableLiveData(State())
 
     data class State(
-        var email: String = "",
-        var password: String = "",
+        var email: String = "michal.gaborik.77@gmail.com",
+        var password: String = "animatrix",
         var loginLoading: Boolean = false
     ) : Serializable
 
