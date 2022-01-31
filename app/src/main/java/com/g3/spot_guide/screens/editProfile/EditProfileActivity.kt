@@ -11,7 +11,7 @@ import com.g3.spot_guide.base.activity.BaseActivity
 import com.g3.spot_guide.base.interfaces.BaseParameters
 import com.g3.spot_guide.models.User
 import com.g3.spot_guide.screens.editProfile.ui.theme.SpotGuideTheme
-import org.koin.android.viewmodel.ext.android.viewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.io.Serializable
 
 const val EDIT_PROFILE_PARAMETERS__EXTRAS_KEY = "EDIT_PROFILE_PARAMETERS__EXTRAS_KEY"

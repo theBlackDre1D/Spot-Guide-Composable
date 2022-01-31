@@ -5,7 +5,7 @@ import com.g3.spot_guide.Session
 import com.g3.spot_guide.base.activity.BaseActivity
 import com.g3.spot_guide.screens.editProfile.EditProfileActivity
 import com.google.firebase.auth.FirebaseAuth
-import org.koin.android.viewmodel.ext.android.viewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SplashActivity : BaseActivity<Nothing>() {
 

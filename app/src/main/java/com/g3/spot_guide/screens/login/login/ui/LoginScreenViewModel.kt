@@ -7,7 +7,7 @@ import com.g3.spot_guide.extensions.doInCoroutine
 import com.g3.spot_guide.repositories.UserRepository
 import com.google.firebase.auth.FirebaseUser
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.collect
 import java.io.Serializable
 
 class LoginScreenViewModel(
@@ -19,6 +19,8 @@ class LoginScreenViewModel(
     data class State(
         var email: String = "michal.gaborik.77@gmail.com",
         var password: String = "animatrix",
+//        var email: String = "",
+//        var password: String = "",
         var loginLoading: Boolean = false
     ) : Serializable
 
@@ -32,7 +34,7 @@ class LoginScreenViewModel(
         doInCoroutine {
             state.value?.let { stateValue ->
                 val result = repository.loginUserWithFirebase(stateValue.email, stateValue.password)
-                result.map {
+                result.collect {
                     loggedInUser.emit(it)
 
                     if (it is UIState.Error) {

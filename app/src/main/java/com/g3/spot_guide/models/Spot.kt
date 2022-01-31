@@ -2,7 +2,7 @@ package com.g3.spot_guide.models
 
 import com.g3.spot_guide.base.interfaces.IHasUploadModel
 import com.g3.spot_guide.enums.SpotType
-import com.google.android.gms.maps.model.LatLng
+import com.google.android.libraries.maps.model.LatLng
 import com.google.firebase.firestore.DocumentId
 import java.io.Serializable
 

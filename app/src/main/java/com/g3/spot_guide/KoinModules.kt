@@ -10,8 +10,9 @@ import com.g3.spot_guide.repositories.UserRepository
 import com.g3.spot_guide.screens.editProfile.EditProfileActivityViewModel
 import com.g3.spot_guide.screens.login.login.ui.LoginScreenViewModel
 import com.g3.spot_guide.screens.login.register.RegisterScreenViewModel
+import com.g3.spot_guide.screens.map.MapViewModel
 import com.g3.spot_guide.screens.splash.SplashActivityViewModel
-import org.koin.android.viewmodel.dsl.viewModel
+import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 val appModules = module {
@@ -29,6 +30,7 @@ val appModules = module {
 //    viewModel { RegisterFragmentViewModel( get() ) }
 //    viewModel { MyProfileFragmentViewModel( get(), get() ) }
     viewModel { EditProfileActivityViewModel() }
+    viewModel { MapViewModel( get() ) }
 //    viewModel { EditProfileFragmentViewModel( get() ) }
 //    viewModel { CrewFragmentViewModel( get() ) }
 //    viewModel { OtherUserProfileActivityViewModel() }

@@ -14,7 +14,7 @@ import com.g3.spot_guide.repositories.UserRepository
 import com.g3.spot_guide.screens.login.login.ui.theme.SpotGuideTheme
 import com.g3.spot_guide.screens.login.register.RegisterScreenUI
 import com.g3.spot_guide.screens.login.register.RegisterScreenViewModel
-import org.koin.android.viewmodel.ext.android.viewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class LoginActivity : BaseActivity<Nothing>() {
 
@@ -80,5 +80,6 @@ fun DefaultPreview3() {
             override fun fromLoginScreenToHomeScreen() {}
         }
 
-        LoginActivityUI(LoginScreenViewModel(UserRepository(UserFirestoreProvider())), handler)    }
+        LoginActivityUI(LoginScreenViewModel(UserRepository(UserFirestoreProvider())), handler)
+    }
 }
