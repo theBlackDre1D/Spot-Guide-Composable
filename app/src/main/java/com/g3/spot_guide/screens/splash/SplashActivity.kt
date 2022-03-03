@@ -1,6 +1,7 @@
 package com.g3.spot_guide.screens.splash
 
 import android.os.Bundle
+import androidx.compose.material.ExperimentalMaterialApi
 import com.g3.spot_guide.Session
 import com.g3.spot_guide.base.activity.BaseActivity
 import com.g3.spot_guide.screens.editProfile.EditProfileActivity
@@ -11,6 +12,7 @@ class SplashActivity : BaseActivity<Nothing>() {
 
     private val splashActivityViewModel: SplashActivityViewModel by viewModel()
 
+    @OptIn(ExperimentalMaterialApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 

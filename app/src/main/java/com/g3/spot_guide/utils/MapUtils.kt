@@ -9,7 +9,7 @@ import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import com.g3.spot_guide.R
-import com.google.android.libraries.maps.MapView
+import com.google.android.gms.maps.MapView
 
 
 /**

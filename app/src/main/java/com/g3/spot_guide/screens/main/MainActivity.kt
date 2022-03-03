@@ -2,6 +2,7 @@ package com.g3.spot_guide.screens.main
 
 import android.os.Bundle
 import androidx.activity.compose.setContent
+import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import com.g3.spot_guide.base.activity.BaseActivity

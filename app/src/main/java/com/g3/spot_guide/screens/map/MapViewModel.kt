@@ -1,6 +1,5 @@
 package com.g3.spot_guide.screens.map
 
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.g3.spot_guide.base.uiState.UIState
 import com.g3.spot_guide.extensions.doInCoroutine
@@ -18,17 +17,17 @@ class MapViewModel(
         val spots: List<Spot>
     ) : Serializable
 
+    init {
+        loadSpots()
+    }
+
     val screenState = MutableStateFlow<UIState<ScreenState>>(UIState.InitialValue)
-    val spots = MutableLiveData<List<Spot>>(listOf())
 
     fun loadSpots() {
         doInCoroutine {
             spotRepository.getAllSpots().collect { uiState ->
                 uiState.getValueOrNull()?.let { downloadedSpots ->
-//                    screenState.emit(
-//                        screenState.value.copy(spots = spots)
-//                    )
-                    spots.postValue(downloadedSpots)
+                    screenState.emit(UIState.Success(ScreenState(downloadedSpots)))
                 }
             }
         }

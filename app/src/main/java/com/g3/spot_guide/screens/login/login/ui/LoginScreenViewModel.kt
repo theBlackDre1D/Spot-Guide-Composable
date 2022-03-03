@@ -7,7 +7,6 @@ import com.g3.spot_guide.extensions.doInCoroutine
 import com.g3.spot_guide.repositories.UserRepository
 import com.google.firebase.auth.FirebaseUser
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.collect
 import java.io.Serializable
 
 class LoginScreenViewModel(

@@ -2,6 +2,7 @@ package com.g3.spot_guide
 
 import android.app.Application
 import android.content.ContextWrapper
+import androidx.compose.material.ExperimentalMaterialApi
 import com.g3.spot_guide.models.User
 import com.google.gson.Gson
 import com.pixplicity.easyprefs.library.Prefs
