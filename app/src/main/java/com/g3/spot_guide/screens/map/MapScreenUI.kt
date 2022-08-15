@@ -6,6 +6,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -22,20 +23,28 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.maps.android.compose.GoogleMap
 import com.google.maps.android.compose.MapProperties
 import com.google.maps.android.compose.Marker
+import kotlinx.coroutines.launch
 import org.koin.androidx.compose.getViewModel
 
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun MapScreenUI(viewModel: MapViewModel = getViewModel()) {
 
     val state = viewModel.screenState.collectAsState(initial = UIState.InitialValue)
+    val bottomSheetScaffoldState = rememberBottomSheetScaffoldState(bottomSheetState = BottomSheetState(initialValue = BottomSheetValue.Collapsed))
+    val coroutineScope = rememberCoroutineScope()
 
-//    val bottomSheetScaffoldState = rememberBottomSheetScaffoldState(
-//        bottomSheetState = BottomSheetState(BottomSheetValue.Collapsed)
-//    )
-
-    Scaffold(
+    BottomSheetScaffold(
         topBar = { SpotGuideAppBar(middleText = stringResource(id = R.string.app_name)) },
         modifier = Modifier.fillMaxSize(),
+        sheetContent = {
+            DateBottomSheet()
+        },
+        scaffoldState = bottomSheetScaffoldState,
+        sheetShape = MaterialTheme.shapes.medium,
+        sheetElevation = BottomSheetScaffoldDefaults.SheetPeekHeight,
+        sheetBackgroundColor = Color.White,
+        backgroundColor = Color.White,
     ) {
         Box(
             modifier = Modifier
@@ -52,8 +61,6 @@ fun MapScreenUI(viewModel: MapViewModel = getViewModel()) {
                 properties = MapProperties(
                     isBuildingEnabled = true,
                     isIndoorEnabled = true,
-//                    isMyLocationEnabled = true,
-//                    isTrafficEnabled = true,
                 )
             ) {
                 state.value.getValueOrNull()?.let { screenState ->
@@ -62,10 +69,11 @@ fun MapScreenUI(viewModel: MapViewModel = getViewModel()) {
                             position = spot.location,
                             title = spot.name,
                             snippet = spot.name,
-                            onClick = {
-                                // TODO Open bottom sheet
-                                false
-                            }
+                            onInfoWindowClick = {
+                                coroutineScope.launch {
+                                    bottomSheetScaffoldState.bottomSheetState.expand()
+                                }
+                            },
                         )
                     }
                 }
@@ -83,6 +91,25 @@ fun MapScreenUI(viewModel: MapViewModel = getViewModel()) {
                 ) {
                     Text(text = "Add point")
                 }
+            }
+        }
+    }
+}
+
+@Composable
+fun DateBottomSheet() {
+    SpotGuideTheme {
+        val textColor = Color.Black
+
+        Scaffold(
+            backgroundColor = Color.White
+        ) {
+            Column() {
+                Text(text = "ThisIsBottomSheet", color = textColor)
+                Text(text = "ThisIsBottomSheet", color = textColor)
+                Text(text = "ThisIsBottomSheet", color = textColor)
+                Text(text = "ThisIsBottomSheet", color = textColor)
+                Text(text = "ThisIsBottomSheet", color = textColor)
             }
         }
     }
