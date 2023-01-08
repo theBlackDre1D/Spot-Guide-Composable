@@ -2,14 +2,13 @@ package com.g3.spot_guide.screens.login.login.ui
 
 import android.os.Bundle
 import androidx.activity.compose.setContent
-import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import co.bluecrystal.core.activity.BaseActivity
 import com.g3.spot_guide.Session
-import com.g3.spot_guide.base.activity.BaseActivity
 import com.g3.spot_guide.providers.UserFirestoreProvider
 import com.g3.spot_guide.repositories.UserRepository
 import com.g3.spot_guide.screens.login.login.ui.theme.SpotGuideTheme

@@ -1,6 +1,6 @@
 package com.g3.spot_guide.models
 
-import com.g3.spot_guide.base.interfaces.IHasUploadModel
+import co.bluecrystal.core.interfaces.IHasUploadModel
 
 data class SpotReview(
     val spotId: String = "",

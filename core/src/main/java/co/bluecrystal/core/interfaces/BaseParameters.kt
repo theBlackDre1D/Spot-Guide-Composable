@@ -1,4 +1,4 @@
-package com.g3.spot_guide.base.interfaces
+package co.bluecrystal.core.interfaces
 
 import android.os.Bundle
 

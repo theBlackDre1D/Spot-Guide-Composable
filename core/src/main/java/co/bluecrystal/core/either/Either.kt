@@ -1,4 +1,4 @@
-package com.g3.spot_guide.base.either
+package co.bluecrystal.core.either
 
 //sealed class Either<out T> {
 //

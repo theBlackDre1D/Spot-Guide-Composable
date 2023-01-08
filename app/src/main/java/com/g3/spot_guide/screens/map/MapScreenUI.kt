@@ -13,8 +13,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import co.bluecrystal.core.uiState.UIState
 import com.g3.spot_guide.R
-import com.g3.spot_guide.base.uiState.UIState
 import com.g3.spot_guide.commonComposables.SpotGuideAppBar
 import com.g3.spot_guide.screens.main.theme.SpotGuideTheme
 import com.google.android.gms.maps.GoogleMapOptions

@@ -2,8 +2,8 @@ package com.g3.spot_guide.repositories
 
 import android.net.Uri
 import android.provider.MediaStore
+import co.bluecrystal.core.uiState.UIState
 import com.g3.spot_guide.Session
-import com.g3.spot_guide.base.uiState.UIState
 import com.g3.spot_guide.models.ImageModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow

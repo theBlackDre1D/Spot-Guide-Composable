@@ -1,8 +1,8 @@
 package com.g3.spot_guide.providers
 
 import android.content.Context
+import co.bluecrystal.core.uiState.UIState
 import com.g3.spot_guide.Session
-import com.g3.spot_guide.base.uiState.UIState
 import com.g3.spot_guide.enums.FirestoreEntityName
 import com.g3.spot_guide.models.ImageModel
 import com.g3.spot_guide.models.MemberRequestDecision

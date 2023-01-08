@@ -1,4 +1,4 @@
-package com.g3.spot_guide.base.uiState
+package co.bluecrystal.core.uiState
 
 sealed class UIState<out T> {
     data class Error(val message: String?) : UIState<Nothing>()

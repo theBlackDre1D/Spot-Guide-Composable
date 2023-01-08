@@ -13,8 +13,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import co.bluecrystal.core.uiState.UIState
 import com.g3.spot_guide.R
-import com.g3.spot_guide.base.uiState.UIState
 import com.g3.spot_guide.commonComposables.StyledInputField
 import com.g3.spot_guide.commonComposables.greatVibesFontFamily
 import com.g3.spot_guide.providers.UserFirestoreProvider
@@ -39,69 +39,86 @@ fun LoginActivityUI(loginScreenViewModel: LoginScreenViewModel, handler: LoginAc
                 Text(text = stringResource(id = R.string.error__log_in))
             }
         }
-    ) {
-        Box(
-            Modifier
-                .fillMaxWidth()
-                .fillMaxHeight(), contentAlignment = Alignment.Center
-        ) {
-            if (!screenState.value.loginLoading) {
-                Column(
-                    horizontalAlignment = Alignment.CenterHorizontally
+    ) { _ ->
+        Column() {
+            Spacer(modifier = Modifier.height(100.dp))
+
+            Box(
+                modifier = Modifier.fillMaxWidth(),
+                contentAlignment = Alignment.Center
+            ) {
+                Text(
+                    text = stringResource(R.string.app_name),
+                    fontSize = 45.sp,
+                    fontFamily = greatVibesFontFamily,
+                    color = BurgundyPrimary,
+                )
+            }
+
+            if (screenState.value.loginLoading) {
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .fillMaxHeight(),
+                    contentAlignment = Alignment.Center
                 ) {
-                    Text(
-                        text = stringResource(R.string.app_name),
-                        fontSize = 45.sp,
-                        fontFamily = greatVibesFontFamily,
+                    CircularProgressIndicator(
                         color = BurgundyPrimary
                     )
+                }
+            }
 
-                    Spacer(modifier = Modifier.height(50.dp))
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .fillMaxHeight(),
+                contentAlignment = Alignment.BottomCenter
+            ) {
+                if (!screenState.value.loginLoading) {
+                    Column(
+                        horizontalAlignment = Alignment.CenterHorizontally
+                    ) {
+                        StyledInputField(
+                            value = screenState.value.email,
+                            iconResId = R.drawable.ic_email,
+                            hint = R.string.login__email,
+                            onValueChange = {
+                                loginScreenViewModel.state.value = screenState.value.copy(email = it)
+                            }
+                        )
 
-                    StyledInputField(
-                        value = screenState.value.email,
-                        iconResId = R.drawable.ic_email,
-                        hint = R.string.login__email,
-                        onValueChange = {
-                            loginScreenViewModel.state.value = screenState.value.copy(email = it)
+                        Spacer(modifier = Modifier.height(15.dp))
+
+                        StyledInputField(
+                            value = screenState.value.password,
+                            iconResId = R.drawable.ic_password,
+                            hint = R.string.login__password,
+                            securedInput = true,
+                            onValueChange = {
+                                loginScreenViewModel.state.value = screenState.value.copy(password = it)
+                            }
+                        )
+
+                        Spacer(modifier = Modifier.height(40.dp))
+
+                        Button(onClick = {
+                            loginScreenViewModel.logIn()
+                        }, enabled = screenState.value.password.length >= 6,
+                            shape = CircleShape) {
+                            Text(text = stringResource(id = R.string.login__login), fontSize = 16.sp)
                         }
-                    )
 
-                    Spacer(modifier = Modifier.height(15.dp))
+                        Spacer(modifier = Modifier.height(40.dp))
 
-                    StyledInputField(
-                        value = screenState.value.password,
-                        iconResId = R.drawable.ic_password,
-                        hint = R.string.login__password,
-                        securedInput = true,
-                        onValueChange = {
-                            loginScreenViewModel.state.value = screenState.value.copy(password = it)
+                        TextButton(
+                            onClick = { handler.fromLoginScreenToRegisterScreen() },
+                            shape = CircleShape) {
+                            Text(text = stringResource(id = R.string.login__no_account), fontSize = 14.sp, color = Black333333)
+                            Spacer(modifier = Modifier.width(4.dp))
+                            Text(text = stringResource(id = R.string.login__register), fontSize = 14.sp, color = BurgundyPrimary)
                         }
-                    )
-
-                    Spacer(modifier = Modifier.height(40.dp))
-
-                    Button(onClick = {
-                        loginScreenViewModel.logIn()
-                    }, enabled = screenState.value.password.length >= 6,
-                        shape = CircleShape) {
-                        Text(text = stringResource(id = R.string.login__login), fontSize = 16.sp)
-                    }
-
-                    Spacer(modifier = Modifier.height(40.dp))
-
-                    TextButton(
-                        onClick = { handler.fromLoginScreenToRegisterScreen() },
-                        shape = CircleShape) {
-                        Text(text = stringResource(id = R.string.login__no_account), fontSize = 14.sp, color = Black333333)
-                        Spacer(modifier = Modifier.width(4.dp))
-                        Text(text = stringResource(id = R.string.login__register), fontSize = 14.sp, color = BurgundyPrimary)
                     }
                 }
-            } else {
-                CircularProgressIndicator(
-                    color = BurgundyPrimary
-                )
             }
         }
     }

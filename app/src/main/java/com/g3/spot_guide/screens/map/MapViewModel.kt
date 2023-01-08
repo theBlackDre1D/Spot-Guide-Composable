@@ -1,12 +1,11 @@
 package com.g3.spot_guide.screens.map
 
 import androidx.lifecycle.ViewModel
-import com.g3.spot_guide.base.uiState.UIState
+import co.bluecrystal.core.uiState.UIState
 import com.g3.spot_guide.extensions.doInCoroutine
 import com.g3.spot_guide.models.Spot
 import com.g3.spot_guide.repositories.SpotRepository
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.collect
 import java.io.Serializable
 
 class MapViewModel(

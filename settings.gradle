@@ -8,3 +8,4 @@ dependencyResolutionManagement {
 }
 rootProject.name = "Spot Guide"
 include ':app'
+include ':core'

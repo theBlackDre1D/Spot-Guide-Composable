@@ -2,8 +2,8 @@ package com.g3.spot_guide.screens.splash
 
 import android.os.Bundle
 import androidx.compose.material.ExperimentalMaterialApi
+import co.bluecrystal.core.activity.BaseActivity
 import com.g3.spot_guide.Session
-import com.g3.spot_guide.base.activity.BaseActivity
 import com.g3.spot_guide.screens.editProfile.EditProfileActivity
 import com.google.firebase.auth.FirebaseAuth
 import org.koin.androidx.viewmodel.ext.android.viewModel

@@ -5,7 +5,7 @@ import androidx.activity.compose.setContent
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
-import com.g3.spot_guide.base.activity.BaseActivity
+import co.bluecrystal.core.activity.BaseActivity
 import com.g3.spot_guide.screens.onBoarding.ui.theme.SpotGuideTheme
 
 const val SHOW_ON_BOARDING__PREFS_KEY = "SHOW_ON_BOARDING__PREFS_KEY"

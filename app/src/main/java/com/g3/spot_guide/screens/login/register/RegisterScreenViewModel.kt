@@ -1,7 +1,7 @@
 package com.g3.spot_guide.screens.login.register
 
 import androidx.lifecycle.ViewModel
-import com.g3.spot_guide.base.uiState.UIState
+import co.bluecrystal.core.uiState.UIState
 import com.g3.spot_guide.extensions.doInCoroutine
 import com.g3.spot_guide.repositories.UserRepository
 import com.google.firebase.auth.FirebaseUser

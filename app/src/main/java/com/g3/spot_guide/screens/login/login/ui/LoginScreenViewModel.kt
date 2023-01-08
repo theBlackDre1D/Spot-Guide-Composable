@@ -2,7 +2,7 @@ package com.g3.spot_guide.screens.login.login.ui
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.g3.spot_guide.base.uiState.UIState
+import co.bluecrystal.core.uiState.UIState
 import com.g3.spot_guide.extensions.doInCoroutine
 import com.g3.spot_guide.repositories.UserRepository
 import com.google.firebase.auth.FirebaseUser
@@ -18,8 +18,6 @@ class LoginScreenViewModel(
     data class State(
         var email: String = "michal.gaborik.77@gmail.com",
         var password: String = "animatrix",
-//        var email: String = "",
-//        var password: String = "",
         var loginLoading: Boolean = false
     ) : Serializable
 

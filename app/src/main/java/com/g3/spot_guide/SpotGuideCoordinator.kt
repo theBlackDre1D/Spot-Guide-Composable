@@ -2,8 +2,7 @@ package com.g3.spot_guide
 
 import android.app.Activity
 import android.content.Intent
-import androidx.compose.material.ExperimentalMaterialApi
-import com.g3.spot_guide.base.coordinator.BaseCoordinator
+import co.bluecrystal.core.coordinator.BaseCoordinator
 import com.g3.spot_guide.screens.editProfile.EDIT_PROFILE_PARAMETERS__EXTRAS_KEY
 import com.g3.spot_guide.screens.editProfile.EditProfileActivity
 import com.g3.spot_guide.screens.login.login.ui.LoginActivity

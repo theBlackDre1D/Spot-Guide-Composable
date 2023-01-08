@@ -1,6 +1,6 @@
 package com.g3.spot_guide.providers
 
-import com.g3.spot_guide.base.uiState.UIState
+import co.bluecrystal.core.uiState.UIState
 import com.g3.spot_guide.enums.FirestoreEntityName
 import com.g3.spot_guide.models.SpotReview
 import kotlinx.coroutines.flow.Flow

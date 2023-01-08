@@ -1,4 +1,4 @@
-package com.g3.spot_guide.base.coordinator
+package co.bluecrystal.core.coordinator
 
 import android.app.Activity
 import android.content.Intent

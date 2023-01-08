@@ -1,6 +1,6 @@
 package com.g3.spot_guide.models
 
-import com.g3.spot_guide.base.interfaces.IHasUploadModel
+import co.bluecrystal.core.interfaces.IHasUploadModel
 import com.g3.spot_guide.enums.SpotType
 import com.google.android.gms.maps.model.LatLng
 import com.google.firebase.firestore.DocumentId

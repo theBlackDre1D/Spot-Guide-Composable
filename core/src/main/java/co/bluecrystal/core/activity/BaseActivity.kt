@@ -1,11 +1,11 @@
-package com.g3.spot_guide.base.activity
+package co.bluecrystal.core.activity
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.OnLifecycleEvent
-import com.g3.spot_guide.base.interfaces.BaseParameters
+import co.bluecrystal.core.interfaces.BaseParameters
 
 abstract class BaseActivity<PARAMETERS : BaseParameters> : ComponentActivity(), LifecycleObserver {
 

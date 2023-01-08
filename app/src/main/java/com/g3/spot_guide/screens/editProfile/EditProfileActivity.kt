@@ -7,8 +7,8 @@ import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
-import com.g3.spot_guide.base.activity.BaseActivity
-import com.g3.spot_guide.base.interfaces.BaseParameters
+import co.bluecrystal.core.activity.BaseActivity
+import co.bluecrystal.core.interfaces.BaseParameters
 import com.g3.spot_guide.models.User
 import com.g3.spot_guide.screens.editProfile.ui.theme.SpotGuideTheme
 import org.koin.androidx.viewmodel.ext.android.viewModel
